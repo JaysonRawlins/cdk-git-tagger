@@ -6,19 +6,19 @@ deployed stacks.
 ### How to install
 
 ```shell
-npm install @layerborn/cdk-git-tagger
+npm install @ljjrawlins/cdk-git-tagger
 ```
 
 or
 
 ```shell
-npm install @layerborn/cdk-git-tagger
+npm install @jjrawlins/cdk-git-tagger
 ```
 
 ### How to use
 
 ```typescript
-import { GitUrlTagger } from '@layerborn/cdk-git-tagger';
+import { GitUrlTagger } from '@jjrawlins/cdk-git-tagger';
 import { App, Aspects, Stack, StackProps } from 'aws-cdk-lib';
 import { Topic } from 'aws-cdk-lib/aws-sns';
 import { Construct } from 'constructs';
@@ -49,7 +49,7 @@ app.synth();
         "Tags": [
           {
             "Key": "GitUrl",
-            "Value": "https://github.com/layerborn/cdk-cool-construct.git"
+            "Value": "https://github.com/jjrawlins/cdk-cool-construct.git"
           }
         ]
       }
