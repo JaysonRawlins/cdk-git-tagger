@@ -43,13 +43,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'mock-fs',
     `aws-cdk-lib@${cdkVersion}`,
     `constructs@${constructsVersion}`,
-    `aws-cdk@${cdkVersion}`,
   ],
   devDeps: [
     '@types/mock-fs',
-    `aws-cdk-lib@${cdkVersion}`,
-    `constructs@${constructsVersion}`,
-    `aws-cdk@${cdkVersion}`,
+    `aws-cdk@${cdkVersion}`, // aws-cdk CLI should be a dev dependency
   ],
   peerDeps: [
     `aws-cdk-lib@^${cdkVersion}`,
@@ -83,6 +80,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     },
   },
 });
+
 
 project.github!.tryFindWorkflow('build')!.file!.addOverride('jobs.build.permissions.id-token', 'write');
 project.synth();

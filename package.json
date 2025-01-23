@@ -42,7 +42,6 @@
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "aws-cdk": "2.99.0",
-    "aws-cdk-lib": "2.99.0",
     "commit-and-tag-version": "^12",
     "eslint": "^9",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -63,7 +62,6 @@
     "constructs": "^10.4.2"
   },
   "dependencies": {
-    "aws-cdk": "2.99.0",
     "aws-cdk-lib": "2.99.0",
     "constructs": "10.4.2",
     "mock-fs": "^5.4.1",
