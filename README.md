@@ -1,7 +1,8 @@
 # CDK Aspect Git Tagger
 
 This is a CDK Aspect that will tag your CDK Stacks with the current git repo location for easier identification of
-deployed stacks.
+deployed stacks. Will create a `.git-url-tagger.json` file in the root of your project to store the git url.  This file
+will be used to determine the git url for the stack.
 
 ### How to install
 
