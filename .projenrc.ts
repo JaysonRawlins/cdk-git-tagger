@@ -2,7 +2,7 @@ import { awscdk } from 'projen';
 import { NpmAccess } from 'projen/lib/javascript';
 
 const cdkVersion = '2.99.0';
-const minNodeVersion = '18.0.0';
+const minNodeVersion = '18.18.0';
 const jsiiVersion = '~5.7.0';
 const constructsVersion = '10.4.2';
 const project = new awscdk.AwsCdkConstructLibrary({
@@ -21,6 +21,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   projenDevDependency: false,
   defaultReleaseBranch: 'main',
   minNodeVersion: minNodeVersion,
+  workflowNodeVersion: minNodeVersion,
   jsiiVersion: jsiiVersion,
   name: '@jjrawlins/cdk-git-tagger',
   npmAccess: NpmAccess.PUBLIC,
