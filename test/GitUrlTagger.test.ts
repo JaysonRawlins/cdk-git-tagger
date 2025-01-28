@@ -1,90 +1,156 @@
+import * as path from 'path';
 import { App, Aspects, Stack } from 'aws-cdk-lib';
-import { Template } from 'aws-cdk-lib/assertions';
 import { Topic } from 'aws-cdk-lib/aws-sns';
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-import mock = require('mock-fs');
-import { GitUrlTagger, GitUrlTaggerProps } from '../src';
+import * as fs from 'fs-extra';
+import { mkdtemp, synthSnapshot } from './TestUtils';
+import { GitUrlTagger } from '../src';
 
-
-function setupTestStack(props?: Partial<GitUrlTaggerProps>, url: string = 'https://something') {
-  mock({
-    '.git/config': 'url = ' + url,
-  });
-
-  const app = new App();
-  const stack = new Stack(app, 'MyStack');
-  new Topic(stack, 'MyTopic', {});
-
-  Aspects.of(stack).add(new GitUrlTagger(props));
-  return stack;
-}
-afterEach(() => {
-  mock.restore();
-});
 
 describe('Aspect adds tags as expected', () => {
-  test('with defaults', () => {
-    const stack = setupTestStack();
+  let app: App;
+  let tempDir: string;
 
-    const assert = Template.fromStack(stack);
-    assert.hasResourceProperties('AWS::SNS::Topic', {
-      Tags: [{
-        Key: 'GitUrl',
-        Value: 'https://something',
-      }],
+  beforeEach(() => {
+    tempDir = mkdtemp('git-tagger');
+    process.env.UNIT_TEST_ROOT_DIR = tempDir;
+
+    fs.writeJSONSync(path.join(tempDir, 'package.json'), {
+      name: 'test-project',
+      version: '1.0.0',
     });
+
+    const gitDir = path.join(tempDir, '.git');
+    fs.mkdirSync(gitDir);
+    fs.writeFileSync(path.join(gitDir, 'config'), `
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+        precomposeunicode = true
+[remote "origin"]
+        url = git@github.com:jjrawlins/cdk-git-tagger.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+    `);
+
+    app = new App({
+      outdir: tempDir,
+    });
+  });
+
+  afterEach(() => {
+    fs.removeSync(tempDir);
+  });
+
+  test('with defaults', () => {
+    const stack = new Stack(app, 'AspectTestTags');
+    new Topic(stack, 'MyTopic');
+
+    Aspects.of(app).add(new GitUrlTagger({}));
+    const snapshot = synthSnapshot(stack);
+    expect(snapshot['.git-url-tagger.json']).toBeDefined();
+    const template = snapshot['AspectTestTags.template.json'];
+    interface CfnResource {
+      Type: string;
+      Properties: {
+        Tags?: Array<{ Key: string; Value: string }>;
+      };
+    }
+    const myTopic = Object.values(template.Resources)
+      .find((resource): resource is CfnResource => {
+        const resourceObject = resource as any;
+        return resourceObject !== null &&
+              typeof resourceObject === 'object' &&
+              'Type' in resourceObject &&
+              resourceObject.Type === 'AWS::SNS::Topic';
+      });
+
+    expect(myTopic?.Properties.Tags).toEqual([
+      {
+        Key: 'GitUrl',
+        Value: 'https://github.com/jjrawlins/cdk-git-tagger',
+      },
+    ]);
+
+    expect(snapshot).toMatchSnapshot();
+
   });
 
   test('with overridden tag name', () => {
-    const stack = setupTestStack({ tagName: 'MyTagName' });
+    const stack = new Stack(app, 'OverrideTagName');
+    new Topic(stack, 'MyTopic');
 
-    const assert = Template.fromStack(stack);
+    Aspects.of(app).add(new GitUrlTagger({
+      normalizeUrl: true,
+      tagName: 'MyTagName',
+    }));
 
-    assert.hasResourceProperties('AWS::SNS::Topic', {
-      Tags: [{
+    const snapshot = synthSnapshot(stack);
+    expect(snapshot['.git-url-tagger.json']).toBeDefined();
+    const template = snapshot['OverrideTagName.template.json'];
+    interface CfnResource {
+      Type: string;
+      Properties: {
+        Tags?: Array<{ Key: string; Value: string }>;
+      };
+    }
+    const myTopic = Object.values(template.Resources)
+      .find((resource): resource is CfnResource => {
+        const resourceObject = resource as any;
+        return resourceObject !== null &&
+              typeof resourceObject === 'object' &&
+              'Type' in resourceObject &&
+              resourceObject.Type === 'AWS::SNS::Topic';
+      });
+
+
+    expect(myTopic?.Properties.Tags).toEqual([
+      {
         Key: 'MyTagName',
-        Value: 'https://something',
-      }],
-    });
+        Value: 'https://github.com/jjrawlins/cdk-git-tagger',
+      },
+    ]);
+
+    expect(snapshot).toMatchSnapshot();
   });
 
   test('normalizes by default', ()=>{
-    const stack = setupTestStack({ tagName: 'MyTagName' }, 'git@github.com:jjrawlins/cdk-git-tagger.git');
+    const stack = new Stack(app, 'Normalize');
+    new Topic(stack, 'MyTopic');
+    Aspects.of(app).add(new GitUrlTagger({
+      tagName: 'MyTagName',
+    }));
 
-    const assert = Template.fromStack(stack);
+    const snapshot = synthSnapshot(stack);
+    expect(snapshot['.git-url-tagger.json']).toBeDefined();
+    const template = snapshot['Normalize.template.json'];
+    interface CfnResource {
+      Type: string;
+      Properties: {
+        Tags?: Array<{ Key: string; Value: string }>;
+      };
+    }
+    const myTopic = Object.values(template.Resources)
+      .find((resource): resource is CfnResource => {
+        const resourceObject = resource as any;
+        return resourceObject !== null &&
+              typeof resourceObject === 'object' &&
+              'Type' in resourceObject &&
+              resourceObject.Type === 'AWS::SNS::Topic';
+      });
 
-    assert.hasResourceProperties('AWS::SNS::Topic', {
-      Tags: [{
+
+    expect(myTopic?.Properties.Tags).toEqual([
+      {
         Key: 'MyTagName',
         Value: 'https://github.com/jjrawlins/cdk-git-tagger',
-      }],
-    });
+      },
+    ]);
+
+    expect(snapshot).toMatchSnapshot();
+
   });
 });
 
-describe('URLs are normalized', function () {
 
-  test('to https when asked', () => {
-    const stack = setupTestStack({ normalizeUrl: true }, 'git@github.com:jjrawlins/cdk-git-tagger.git');
-
-    const assert = Template.fromStack(stack);
-    assert.hasResourceProperties('AWS::SNS::Topic', {
-      Tags: [{
-        Key: 'GitUrl',
-        Value: 'https://github.com/jjrawlins/cdk-git-tagger',
-      }],
-    });
-  });
-
-  test('doesn\'t change when already https', () => {
-    const stack = setupTestStack({ normalizeUrl: false }, 'git@github.com:jjrawlins/cdk-git-tagger.git');
-
-    const assert = Template.fromStack(stack);
-    assert.hasResourceProperties('AWS::SNS::Topic', {
-      Tags: [{
-        Key: 'GitUrl',
-        Value: 'git@github.com:jjrawlins/cdk-git-tagger.git',
-      }],
-    });
-  });
-});

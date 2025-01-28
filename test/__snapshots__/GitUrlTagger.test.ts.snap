@@ -1,0 +1,745 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Aspect adds tags as expected normalizes by default 1`] = `
+{
+  ".git-url-tagger.json": {
+    "url": "git@github.com:jjrawlins/cdk-git-tagger.git",
+  },
+  ".git/config": "
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+        precomposeunicode = true
+[remote "origin"]
+        url = git@github.com:jjrawlins/cdk-git-tagger.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+    ",
+  "Normalize.assets.json": {
+    "dockerImages": {},
+    "files": {
+      "36de6d071efcafc186afd9d812676eb47a0c49f50d97964dc19d70e7a94181ca": {
+        "destinations": {
+          "current_account-current_region": {
+            "assumeRoleArn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-\${AWS::AccountId}-\${AWS::Region}",
+            "bucketName": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+            "objectKey": "36de6d071efcafc186afd9d812676eb47a0c49f50d97964dc19d70e7a94181ca.json",
+          },
+        },
+        "source": {
+          "packaging": "file",
+          "path": "Normalize.template.json",
+        },
+      },
+    },
+    "version": "36.0.0",
+  },
+  "Normalize.template.json": {
+    "Parameters": {
+      "BootstrapVersion": {
+        "Default": "/cdk-bootstrap/hnb659fds/version",
+        "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+        "Type": "AWS::SSM::Parameter::Value<String>",
+      },
+    },
+    "Resources": {
+      "MyTopic86869434": {
+        "Properties": {
+          "Tags": [
+            {
+              "Key": "MyTagName",
+              "Value": "https://github.com/jjrawlins/cdk-git-tagger",
+            },
+          ],
+        },
+        "Type": "AWS::SNS::Topic",
+      },
+    },
+    "Rules": {
+      "CheckBootstrapVersion": {
+        "Assertions": [
+          {
+            "Assert": {
+              "Fn::Not": [
+                {
+                  "Fn::Contains": [
+                    [
+                      "1",
+                      "2",
+                      "3",
+                      "4",
+                      "5",
+                    ],
+                    {
+                      "Ref": "BootstrapVersion",
+                    },
+                  ],
+                },
+              ],
+            },
+            "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+          },
+        ],
+      },
+    },
+  },
+  "cdk.out": "{"version":"36.0.0"}",
+  "manifest.json": {
+    "artifacts": {
+      "Normalize": {
+        "dependencies": [
+          "Normalize.assets",
+        ],
+        "displayName": "Normalize",
+        "environment": "aws://unknown-account/unknown-region",
+        "metadata": {
+          "/Normalize": [
+            {
+              "data": [
+                {
+                  "Key": "MyTagName",
+                  "Value": "https://github.com/jjrawlins/cdk-git-tagger",
+                },
+              ],
+              "type": "aws:cdk:stack-tags",
+            },
+          ],
+          "/Normalize/BootstrapVersion": [
+            {
+              "data": "BootstrapVersion",
+              "type": "aws:cdk:logicalId",
+            },
+          ],
+          "/Normalize/CheckBootstrapVersion": [
+            {
+              "data": "CheckBootstrapVersion",
+              "type": "aws:cdk:logicalId",
+            },
+          ],
+          "/Normalize/MyTopic/Resource": [
+            {
+              "data": "MyTopic86869434",
+              "type": "aws:cdk:logicalId",
+            },
+          ],
+        },
+        "properties": {
+          "additionalDependencies": [
+            "Normalize.assets",
+          ],
+          "assumeRoleArn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-\${AWS::AccountId}-\${AWS::Region}",
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+          "cloudFormationExecutionRoleArn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-\${AWS::AccountId}-\${AWS::Region}",
+          "lookupRole": {
+            "arn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-\${AWS::AccountId}-\${AWS::Region}",
+            "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+            "requiresBootstrapStackVersion": 8,
+          },
+          "requiresBootstrapStackVersion": 6,
+          "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}/36de6d071efcafc186afd9d812676eb47a0c49f50d97964dc19d70e7a94181ca.json",
+          "tags": {
+            "MyTagName": "https://github.com/jjrawlins/cdk-git-tagger",
+          },
+          "templateFile": "Normalize.template.json",
+          "terminationProtection": false,
+          "validateOnSynth": false,
+        },
+        "type": "aws:cloudformation:stack",
+      },
+      "Normalize.assets": {
+        "properties": {
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+          "file": "Normalize.assets.json",
+          "requiresBootstrapStackVersion": 6,
+        },
+        "type": "cdk:asset-manifest",
+      },
+      "Tree": {
+        "properties": {
+          "file": "tree.json",
+        },
+        "type": "cdk:tree",
+      },
+    },
+    "version": "36.0.0",
+  },
+  "package.json": {
+    "name": "test-project",
+    "version": "1.0.0",
+  },
+  "tree.json": {
+    "tree": {
+      "children": {
+        "Normalize": {
+          "children": {
+            "BootstrapVersion": {
+              "constructInfo": {
+                "fqn": "aws-cdk-lib.CfnParameter",
+                "version": "2.150.0",
+              },
+              "id": "BootstrapVersion",
+              "path": "Normalize/BootstrapVersion",
+            },
+            "CheckBootstrapVersion": {
+              "constructInfo": {
+                "fqn": "aws-cdk-lib.CfnRule",
+                "version": "2.150.0",
+              },
+              "id": "CheckBootstrapVersion",
+              "path": "Normalize/CheckBootstrapVersion",
+            },
+            "MyTopic": {
+              "children": {
+                "Resource": {
+                  "attributes": {
+                    "aws:cdk:cloudformation:props": {
+                      "tags": [
+                        {
+                          "key": "MyTagName",
+                          "value": "https://github.com/jjrawlins/cdk-git-tagger",
+                        },
+                      ],
+                    },
+                    "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  },
+                  "constructInfo": {
+                    "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                    "version": "2.150.0",
+                  },
+                  "id": "Resource",
+                  "path": "Normalize/MyTopic/Resource",
+                },
+              },
+              "constructInfo": {
+                "fqn": "aws-cdk-lib.aws_sns.Topic",
+                "version": "2.150.0",
+              },
+              "id": "MyTopic",
+              "path": "Normalize/MyTopic",
+            },
+          },
+          "constructInfo": {
+            "fqn": "aws-cdk-lib.Stack",
+            "version": "2.150.0",
+          },
+          "id": "Normalize",
+          "path": "Normalize",
+        },
+        "Tree": {
+          "constructInfo": {
+            "fqn": "constructs.Construct",
+            "version": "10.3.2",
+          },
+          "id": "Tree",
+          "path": "Tree",
+        },
+      },
+      "constructInfo": {
+        "fqn": "aws-cdk-lib.App",
+        "version": "2.150.0",
+      },
+      "id": "App",
+      "path": "",
+    },
+    "version": "tree-0.1",
+  },
+}
+`;
+
+exports[`Aspect adds tags as expected with defaults 1`] = `
+{
+  ".git-url-tagger.json": {
+    "url": "git@github.com:jjrawlins/cdk-git-tagger.git",
+  },
+  ".git/config": "
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+        precomposeunicode = true
+[remote "origin"]
+        url = git@github.com:jjrawlins/cdk-git-tagger.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+    ",
+  "AspectTestTags.assets.json": {
+    "dockerImages": {},
+    "files": {
+      "e4d298b34a1e99bca517dadde16813a5a6a46a78c6745fad66f4779213e30279": {
+        "destinations": {
+          "current_account-current_region": {
+            "assumeRoleArn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-\${AWS::AccountId}-\${AWS::Region}",
+            "bucketName": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+            "objectKey": "e4d298b34a1e99bca517dadde16813a5a6a46a78c6745fad66f4779213e30279.json",
+          },
+        },
+        "source": {
+          "packaging": "file",
+          "path": "AspectTestTags.template.json",
+        },
+      },
+    },
+    "version": "36.0.0",
+  },
+  "AspectTestTags.template.json": {
+    "Parameters": {
+      "BootstrapVersion": {
+        "Default": "/cdk-bootstrap/hnb659fds/version",
+        "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+        "Type": "AWS::SSM::Parameter::Value<String>",
+      },
+    },
+    "Resources": {
+      "MyTopic86869434": {
+        "Properties": {
+          "Tags": [
+            {
+              "Key": "GitUrl",
+              "Value": "https://github.com/jjrawlins/cdk-git-tagger",
+            },
+          ],
+        },
+        "Type": "AWS::SNS::Topic",
+      },
+    },
+    "Rules": {
+      "CheckBootstrapVersion": {
+        "Assertions": [
+          {
+            "Assert": {
+              "Fn::Not": [
+                {
+                  "Fn::Contains": [
+                    [
+                      "1",
+                      "2",
+                      "3",
+                      "4",
+                      "5",
+                    ],
+                    {
+                      "Ref": "BootstrapVersion",
+                    },
+                  ],
+                },
+              ],
+            },
+            "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+          },
+        ],
+      },
+    },
+  },
+  "cdk.out": "{"version":"36.0.0"}",
+  "manifest.json": {
+    "artifacts": {
+      "AspectTestTags": {
+        "dependencies": [
+          "AspectTestTags.assets",
+        ],
+        "displayName": "AspectTestTags",
+        "environment": "aws://unknown-account/unknown-region",
+        "metadata": {
+          "/AspectTestTags": [
+            {
+              "data": [
+                {
+                  "Key": "GitUrl",
+                  "Value": "https://github.com/jjrawlins/cdk-git-tagger",
+                },
+              ],
+              "type": "aws:cdk:stack-tags",
+            },
+          ],
+          "/AspectTestTags/BootstrapVersion": [
+            {
+              "data": "BootstrapVersion",
+              "type": "aws:cdk:logicalId",
+            },
+          ],
+          "/AspectTestTags/CheckBootstrapVersion": [
+            {
+              "data": "CheckBootstrapVersion",
+              "type": "aws:cdk:logicalId",
+            },
+          ],
+          "/AspectTestTags/MyTopic/Resource": [
+            {
+              "data": "MyTopic86869434",
+              "type": "aws:cdk:logicalId",
+            },
+          ],
+        },
+        "properties": {
+          "additionalDependencies": [
+            "AspectTestTags.assets",
+          ],
+          "assumeRoleArn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-\${AWS::AccountId}-\${AWS::Region}",
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+          "cloudFormationExecutionRoleArn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-\${AWS::AccountId}-\${AWS::Region}",
+          "lookupRole": {
+            "arn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-\${AWS::AccountId}-\${AWS::Region}",
+            "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+            "requiresBootstrapStackVersion": 8,
+          },
+          "requiresBootstrapStackVersion": 6,
+          "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}/e4d298b34a1e99bca517dadde16813a5a6a46a78c6745fad66f4779213e30279.json",
+          "tags": {
+            "GitUrl": "https://github.com/jjrawlins/cdk-git-tagger",
+          },
+          "templateFile": "AspectTestTags.template.json",
+          "terminationProtection": false,
+          "validateOnSynth": false,
+        },
+        "type": "aws:cloudformation:stack",
+      },
+      "AspectTestTags.assets": {
+        "properties": {
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+          "file": "AspectTestTags.assets.json",
+          "requiresBootstrapStackVersion": 6,
+        },
+        "type": "cdk:asset-manifest",
+      },
+      "Tree": {
+        "properties": {
+          "file": "tree.json",
+        },
+        "type": "cdk:tree",
+      },
+    },
+    "version": "36.0.0",
+  },
+  "package.json": {
+    "name": "test-project",
+    "version": "1.0.0",
+  },
+  "tree.json": {
+    "tree": {
+      "children": {
+        "AspectTestTags": {
+          "children": {
+            "BootstrapVersion": {
+              "constructInfo": {
+                "fqn": "aws-cdk-lib.CfnParameter",
+                "version": "2.150.0",
+              },
+              "id": "BootstrapVersion",
+              "path": "AspectTestTags/BootstrapVersion",
+            },
+            "CheckBootstrapVersion": {
+              "constructInfo": {
+                "fqn": "aws-cdk-lib.CfnRule",
+                "version": "2.150.0",
+              },
+              "id": "CheckBootstrapVersion",
+              "path": "AspectTestTags/CheckBootstrapVersion",
+            },
+            "MyTopic": {
+              "children": {
+                "Resource": {
+                  "attributes": {
+                    "aws:cdk:cloudformation:props": {
+                      "tags": [
+                        {
+                          "key": "GitUrl",
+                          "value": "https://github.com/jjrawlins/cdk-git-tagger",
+                        },
+                      ],
+                    },
+                    "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  },
+                  "constructInfo": {
+                    "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                    "version": "2.150.0",
+                  },
+                  "id": "Resource",
+                  "path": "AspectTestTags/MyTopic/Resource",
+                },
+              },
+              "constructInfo": {
+                "fqn": "aws-cdk-lib.aws_sns.Topic",
+                "version": "2.150.0",
+              },
+              "id": "MyTopic",
+              "path": "AspectTestTags/MyTopic",
+            },
+          },
+          "constructInfo": {
+            "fqn": "aws-cdk-lib.Stack",
+            "version": "2.150.0",
+          },
+          "id": "AspectTestTags",
+          "path": "AspectTestTags",
+        },
+        "Tree": {
+          "constructInfo": {
+            "fqn": "constructs.Construct",
+            "version": "10.3.2",
+          },
+          "id": "Tree",
+          "path": "Tree",
+        },
+      },
+      "constructInfo": {
+        "fqn": "aws-cdk-lib.App",
+        "version": "2.150.0",
+      },
+      "id": "App",
+      "path": "",
+    },
+    "version": "tree-0.1",
+  },
+}
+`;
+
+exports[`Aspect adds tags as expected with overridden tag name 1`] = `
+{
+  ".git-url-tagger.json": {
+    "url": "git@github.com:jjrawlins/cdk-git-tagger.git",
+  },
+  ".git/config": "
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+        precomposeunicode = true
+[remote "origin"]
+        url = git@github.com:jjrawlins/cdk-git-tagger.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+    ",
+  "OverrideTagName.assets.json": {
+    "dockerImages": {},
+    "files": {
+      "36de6d071efcafc186afd9d812676eb47a0c49f50d97964dc19d70e7a94181ca": {
+        "destinations": {
+          "current_account-current_region": {
+            "assumeRoleArn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-\${AWS::AccountId}-\${AWS::Region}",
+            "bucketName": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+            "objectKey": "36de6d071efcafc186afd9d812676eb47a0c49f50d97964dc19d70e7a94181ca.json",
+          },
+        },
+        "source": {
+          "packaging": "file",
+          "path": "OverrideTagName.template.json",
+        },
+      },
+    },
+    "version": "36.0.0",
+  },
+  "OverrideTagName.template.json": {
+    "Parameters": {
+      "BootstrapVersion": {
+        "Default": "/cdk-bootstrap/hnb659fds/version",
+        "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+        "Type": "AWS::SSM::Parameter::Value<String>",
+      },
+    },
+    "Resources": {
+      "MyTopic86869434": {
+        "Properties": {
+          "Tags": [
+            {
+              "Key": "MyTagName",
+              "Value": "https://github.com/jjrawlins/cdk-git-tagger",
+            },
+          ],
+        },
+        "Type": "AWS::SNS::Topic",
+      },
+    },
+    "Rules": {
+      "CheckBootstrapVersion": {
+        "Assertions": [
+          {
+            "Assert": {
+              "Fn::Not": [
+                {
+                  "Fn::Contains": [
+                    [
+                      "1",
+                      "2",
+                      "3",
+                      "4",
+                      "5",
+                    ],
+                    {
+                      "Ref": "BootstrapVersion",
+                    },
+                  ],
+                },
+              ],
+            },
+            "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+          },
+        ],
+      },
+    },
+  },
+  "cdk.out": "{"version":"36.0.0"}",
+  "manifest.json": {
+    "artifacts": {
+      "OverrideTagName": {
+        "dependencies": [
+          "OverrideTagName.assets",
+        ],
+        "displayName": "OverrideTagName",
+        "environment": "aws://unknown-account/unknown-region",
+        "metadata": {
+          "/OverrideTagName": [
+            {
+              "data": [
+                {
+                  "Key": "MyTagName",
+                  "Value": "https://github.com/jjrawlins/cdk-git-tagger",
+                },
+              ],
+              "type": "aws:cdk:stack-tags",
+            },
+          ],
+          "/OverrideTagName/BootstrapVersion": [
+            {
+              "data": "BootstrapVersion",
+              "type": "aws:cdk:logicalId",
+            },
+          ],
+          "/OverrideTagName/CheckBootstrapVersion": [
+            {
+              "data": "CheckBootstrapVersion",
+              "type": "aws:cdk:logicalId",
+            },
+          ],
+          "/OverrideTagName/MyTopic/Resource": [
+            {
+              "data": "MyTopic86869434",
+              "type": "aws:cdk:logicalId",
+            },
+          ],
+        },
+        "properties": {
+          "additionalDependencies": [
+            "OverrideTagName.assets",
+          ],
+          "assumeRoleArn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-\${AWS::AccountId}-\${AWS::Region}",
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+          "cloudFormationExecutionRoleArn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-\${AWS::AccountId}-\${AWS::Region}",
+          "lookupRole": {
+            "arn": "arn:\${AWS::Partition}:iam::\${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-\${AWS::AccountId}-\${AWS::Region}",
+            "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+            "requiresBootstrapStackVersion": 8,
+          },
+          "requiresBootstrapStackVersion": 6,
+          "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}/36de6d071efcafc186afd9d812676eb47a0c49f50d97964dc19d70e7a94181ca.json",
+          "tags": {
+            "MyTagName": "https://github.com/jjrawlins/cdk-git-tagger",
+          },
+          "templateFile": "OverrideTagName.template.json",
+          "terminationProtection": false,
+          "validateOnSynth": false,
+        },
+        "type": "aws:cloudformation:stack",
+      },
+      "OverrideTagName.assets": {
+        "properties": {
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+          "file": "OverrideTagName.assets.json",
+          "requiresBootstrapStackVersion": 6,
+        },
+        "type": "cdk:asset-manifest",
+      },
+      "Tree": {
+        "properties": {
+          "file": "tree.json",
+        },
+        "type": "cdk:tree",
+      },
+    },
+    "version": "36.0.0",
+  },
+  "package.json": {
+    "name": "test-project",
+    "version": "1.0.0",
+  },
+  "tree.json": {
+    "tree": {
+      "children": {
+        "OverrideTagName": {
+          "children": {
+            "BootstrapVersion": {
+              "constructInfo": {
+                "fqn": "aws-cdk-lib.CfnParameter",
+                "version": "2.150.0",
+              },
+              "id": "BootstrapVersion",
+              "path": "OverrideTagName/BootstrapVersion",
+            },
+            "CheckBootstrapVersion": {
+              "constructInfo": {
+                "fqn": "aws-cdk-lib.CfnRule",
+                "version": "2.150.0",
+              },
+              "id": "CheckBootstrapVersion",
+              "path": "OverrideTagName/CheckBootstrapVersion",
+            },
+            "MyTopic": {
+              "children": {
+                "Resource": {
+                  "attributes": {
+                    "aws:cdk:cloudformation:props": {
+                      "tags": [
+                        {
+                          "key": "MyTagName",
+                          "value": "https://github.com/jjrawlins/cdk-git-tagger",
+                        },
+                      ],
+                    },
+                    "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  },
+                  "constructInfo": {
+                    "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                    "version": "2.150.0",
+                  },
+                  "id": "Resource",
+                  "path": "OverrideTagName/MyTopic/Resource",
+                },
+              },
+              "constructInfo": {
+                "fqn": "aws-cdk-lib.aws_sns.Topic",
+                "version": "2.150.0",
+              },
+              "id": "MyTopic",
+              "path": "OverrideTagName/MyTopic",
+            },
+          },
+          "constructInfo": {
+            "fqn": "aws-cdk-lib.Stack",
+            "version": "2.150.0",
+          },
+          "id": "OverrideTagName",
+          "path": "OverrideTagName",
+        },
+        "Tree": {
+          "constructInfo": {
+            "fqn": "constructs.Construct",
+            "version": "10.3.2",
+          },
+          "id": "Tree",
+          "path": "Tree",
+        },
+      },
+      "constructInfo": {
+        "fqn": "aws-cdk-lib.App",
+        "version": "2.150.0",
+      },
+      "id": "App",
+      "path": "",
+    },
+    "version": "tree-0.1",
+  },
+}
+`;
