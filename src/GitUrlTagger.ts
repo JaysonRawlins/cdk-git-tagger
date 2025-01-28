@@ -40,9 +40,12 @@ export class GitUrlTagger implements IAspect {
     new Tag(this.props?.tagName || 'GitUrl', this.gitUrl).visit(construct);
   }
 
+  private getCurrentDir(): string {
+    return process.env.UNIT_TEST_ROOT_DIR || process.cwd();
+  }
 
   findGitDirectory(): string {
-    let currentDir = process.cwd(); // Get the current directory
+    let currentDir = this.getCurrentDir();
 
     while (currentDir !== '/') {
       const gitDir = path.join(currentDir, '.git');
@@ -58,7 +61,7 @@ export class GitUrlTagger implements IAspect {
   }
 
   private findRootDirectory(): string {
-    let currentDir = process.cwd(); // Get the current directory
+    let currentDir =this.getCurrentDir(); // Get the current directory
 
     while (currentDir !== '/') {
       const packageJson = path.join(currentDir, 'package.json');
@@ -76,6 +79,7 @@ export class GitUrlTagger implements IAspect {
 
 
   private pullGitUrlFromFile() {
+
     const rootpath = this.findRootDirectory();
     const gitUrlTaggerConfig = path.join(rootpath, this._gitUrlTaggerFileName);
     if (fs.existsSync(gitUrlTaggerConfig)) {

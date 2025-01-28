@@ -36,40 +36,41 @@
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^2",
+    "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.12",
-    "@types/mock-fs": "^4.13.4",
-    "@types/node": "^18",
+    "@types/node": "^20",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
-    "aws-cdk": "2.99.0",
+    "aws-cdk": "2.150.0",
     "commit-and-tag-version": "^12",
     "eslint": "^9",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.1",
     "jest": "^29.7.0",
     "jest-junit": "^16",
-    "jsii": "~5.7.0",
+    "jsii": "~5.4.0",
     "jsii-diff": "^1.97.0",
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.97.0",
-    "jsii-rosetta": "~5.7.0",
+    "jsii-rosetta": "~5.4.0",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.99.0",
-    "constructs": "^10.4.2"
+    "aws-cdk-lib": "^2.150.0",
+    "constructs": "^10.3.2"
   },
   "dependencies": {
-    "aws-cdk-lib": "2.99.0",
-    "constructs": "10.4.2",
-    "mock-fs": "^5.4.1",
+    "aws-cdk-lib": "2.150.0",
+    "constructs": "10.3.2",
     "projen": "^0.91.6"
   },
-  "bundledDependencies": [
-    "mock-fs"
-  ],
+  "resolutions": {
+    "constructs": "10.3.2"
+  },
   "keywords": [
     "cdk",
     "git",
@@ -78,7 +79,7 @@
     "tagger"
   ],
   "engines": {
-    "node": ">= 18.18.0"
+    "node": ">= 20.9.0"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
@@ -147,8 +148,8 @@
     "outdir": "dist",
     "targets": {
       "python": {
-        "distName": "jjrawlins.cdk-git-tagger",
-        "module": "jjrawlins.cdk_git_tagger"
+        "distName": "jjrawlins_cdk-git-tagger",
+        "module": "jjrawlins_cdk_git_tagger"
       },
       "go": {
         "moduleName": "github.com/jjrawlins/cdk-git-tagger"
