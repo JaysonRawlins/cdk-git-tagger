@@ -7,13 +7,13 @@ will be used to determine the git url for the stack.
 ### How to install
 
 ```shell
-npm install @ljjrawlins/cdk-git-tagger
+npm install @jjrawlins/cdk-git-tagger
 ```
 
 or
 
 ```shell
-npm install @jjrawlins/cdk-git-tagger
+yarn add @jjrawlins/cdk-git-tagger
 ```
 
 ### How to use
