@@ -3,8 +3,8 @@ import { NpmAccess } from 'projen/lib/javascript';
 
 const cdkVersion = '2.150.0';
 const minNodeVersion = '20.9.0';
-const jsiiVersion = '~5.4.0';
-const constructsVersion = '10.3.2';
+const jsiiVersion = '~5.5.0';
+const constructsVersion = '10.4.2';
 const projenVersion = '0.91.6';
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Jayson Rawlins',
@@ -92,7 +92,7 @@ project.github!.tryFindWorkflow('build')!.file!.addOverride('jobs.build.permissi
 project.compileTask.exec('rm -r tsconfig.json');
 
 project.package.addField('resolutions', {
-  constructs: '10.3.2',
+  constructs: constructsVersion,
 });
 
 project.synth();

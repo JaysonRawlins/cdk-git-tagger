@@ -230,7 +230,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
         "Tree": {
           "constructInfo": {
             "fqn": "constructs.Construct",
-            "version": "10.3.2",
+            "version": "10.4.2",
           },
           "id": "Tree",
           "path": "Tree",
@@ -478,7 +478,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
         "Tree": {
           "constructInfo": {
             "fqn": "constructs.Construct",
-            "version": "10.3.2",
+            "version": "10.4.2",
           },
           "id": "Tree",
           "path": "Tree",
@@ -726,7 +726,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
         "Tree": {
           "constructInfo": {
             "fqn": "constructs.Construct",
-            "version": "10.3.2",
+            "version": "10.4.2",
           },
           "id": "Tree",
           "path": "Tree",

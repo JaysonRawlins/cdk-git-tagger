@@ -82,12 +82,12 @@
     },
     {
       "name": "jsii-rosetta",
-      "version": "~5.4.0",
+      "version": "~5.5.0",
       "type": "build"
     },
     {
       "name": "jsii",
-      "version": "~5.4.0",
+      "version": "~5.5.0",
       "type": "build"
     },
     {
@@ -109,7 +109,7 @@
     },
     {
       "name": "constructs",
-      "version": "^10.3.2",
+      "version": "^10.4.2",
       "type": "peer"
     },
     {
