@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
+      packages: read
     outputs:
       latest_commit: ${{ steps.git_remote.outputs.latest_commit }}
       tag_exists: ${{ steps.check_tag_exists.outputs.exists }}
@@ -28,10 +30,18 @@ jobs:
         run: |-
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_GITHUB_OIDC_ROLE }}
+          role-duration-seconds: 900
+          aws-region: ${{ secrets.AWS_GITHUB_OIDC_REGION }}
+          role-skip-session-tagging: true
+          role-session-name: GitHubActions
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20.9.0
+          node-version: 22.x
       - name: Install dependencies
         run: yarn install --check-files --frozen-lockfile
       - name: release
@@ -72,7 +82,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v4
         with:
-          node-version: 20.9.0
+          node-version: 22.x
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
@@ -93,12 +103,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: write
+      packages: read
     if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
       - uses: actions/setup-node@v4
         with:
-          node-version: 20.9.0
+          node-version: 22.x
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
@@ -107,6 +118,14 @@ jobs:
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_GITHUB_OIDC_ROLE }}
+          role-duration-seconds: 900
+          aws-region: ${{ secrets.AWS_GITHUB_OIDC_REGION }}
+          role-skip-session-tagging: true
+          role-session-name: GitHubActions
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -133,12 +152,14 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      id-token: write
+      packages: read
     if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
       - uses: actions/setup-node@v4
         with:
-          node-version: 20.9.0
+          node-version: 22.x
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
@@ -150,6 +171,14 @@ jobs:
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_GITHUB_OIDC_ROLE }}
+          role-duration-seconds: 900
+          aws-region: ${{ secrets.AWS_GITHUB_OIDC_REGION }}
+          role-skip-session-tagging: true
+          role-session-name: GitHubActions
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -174,12 +203,14 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      id-token: write
+      packages: read
     if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
       - uses: actions/setup-node@v4
         with:
-          node-version: 20.9.0
+          node-version: 22.x
       - uses: actions/setup-go@v5
         with:
           go-version: ^1.18.0
@@ -191,6 +222,14 @@ jobs:
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_GITHUB_OIDC_ROLE }}
+          role-duration-seconds: 900
+          aws-region: ${{ secrets.AWS_GITHUB_OIDC_REGION }}
+          role-skip-session-tagging: true
+          role-session-name: GitHubActions
       - name: Checkout
         uses: actions/checkout@v4
         with:
