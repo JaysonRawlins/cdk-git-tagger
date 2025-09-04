@@ -1,12 +1,12 @@
-package jjrawlinscdkgittagger
+package cdk-git-tagger
 
 import (
 	_jsii_ "github.com/aws/jsii-runtime-go/runtime"
-	_init_ "github.com/jjrawlins/cdk-git-tagger/jjrawlinscdkgittagger/jsii"
+	_init_ "github.com/JaysonRawlins/cdk-git-tagger/cdk-git-tagger/jsii"
 
 	"github.com/aws/aws-cdk-go/awscdk/v2"
 	"github.com/aws/constructs-go/constructs/v10"
-	"github.com/jjrawlins/cdk-git-tagger/jjrawlinscdkgittagger/internal"
+	"github.com/JaysonRawlins/cdk-git-tagger/cdk-git-tagger/internal"
 )
 
 type GitUrlTagger interface {

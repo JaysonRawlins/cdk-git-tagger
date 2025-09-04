@@ -1,4 +1,4 @@
-module github.com/jjrawlins/cdk-git-tagger/jjrawlinscdkgittagger
+module github.com/JaysonRawlins/cdk-git-tagger/cdk-git-tagger
 
 go 1.18
 

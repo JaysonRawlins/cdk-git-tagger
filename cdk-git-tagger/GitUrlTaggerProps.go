@@ -1,4 +1,4 @@
-package jjrawlinscdkgittagger
+package cdk-git-tagger
 
 
 type GitUrlTaggerProps struct {

@@ -1,5 +1,5 @@
 // CDK Aspect to tag resources with git metadata.  This provides a nice connection between the construct and the git repository.
-package jjrawlinscdkgittagger
+package cdk-git-tagger
 
 import (
 	"reflect"
