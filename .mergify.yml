@@ -5,6 +5,10 @@ queue_rules:
       - label = automerge
       - -label~=(do-not-merge)
       - status-success=build
+      - status-success=build
+      - status-success=package-js
+      - status-success=package-python
+      - status-success=package-go
       - -author=dependabot[bot]
       - -author=projenbuildmanager[bot]
     merge_method: squash
@@ -52,6 +56,9 @@ pull_request_rules:
       - label = automerge
       - -label~=(do-not-merge)
       - status-success=build
+      - status-success=package-js
+      - status-success=package-python
+      - status-success=package-go
     actions:
       queue:
         name: default
