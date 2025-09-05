@@ -68,7 +68,7 @@
   "dependencies": {
     "aws-cdk-lib": "2.150.0",
     "constructs": "10.4.2",
-    "projen": "^0.91.6"
+    "projen": "^0.95.4"
   },
   "resolutions": {
     "brace-expansion": "1.1.12",
