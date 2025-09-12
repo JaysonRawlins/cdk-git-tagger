@@ -71,7 +71,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   depsUpgrade: true,
   publishToPypi: {
-    distName: 'jjrawlins_cdk-git-tagger',
+    distName: 'jjrawlins-cdk-git-tagger',
     module: 'jjrawlins_cdk_git_tagger',
   },
   publishToGo: {
@@ -80,10 +80,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   deps: [
     'projen',
-    'aws-cdk-lib',
     'constructs',
   ],
   devDeps: [
+    `aws-cdk-lib@${cdkVersion}`,
     '@types/fs-extra',
     'aws-cdk',
     'fs-extra',
@@ -129,7 +129,11 @@ project.package.addField('resolutions', {
   'form-data': '^4.0.4',
   '@eslint/plugin-kit': '^0.3.4',
   'constructs': constructsVersion,
+  'aws-cdk-lib': cdkVersion,
 });
+
+// Add JSII configuration to handle aws-cdk-lib dependency
+project.package.addField('bundledDependencies', ['aws-cdk-lib']);
 
 project.github!.tryFindWorkflow('upgrade-main')!.file!.addOverride('jobs.upgrade.permissions.id-token', 'write');
 project.github!.tryFindWorkflow('upgrade-main')!.file!.addOverride('jobs.upgrade.permissions.packages', 'write');

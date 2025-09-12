@@ -44,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "aws-cdk": "2.1029.1",
+    "aws-cdk-lib": "2.150.0",
     "commit-and-tag-version": "^12",
     "eslint": "^9",
     "eslint-import-resolver-typescript": "^3.10.1",
@@ -66,7 +67,6 @@
     "constructs": "^10.4.2"
   },
   "dependencies": {
-    "aws-cdk-lib": "2.214.0",
     "constructs": "10.4.2",
     "projen": "^0.96.1"
   },
@@ -74,7 +74,8 @@
     "brace-expansion": "1.1.12",
     "form-data": "^4.0.4",
     "@eslint/plugin-kit": "^0.3.4",
-    "constructs": "10.4.2"
+    "constructs": "10.4.2",
+    "aws-cdk-lib": "2.150.0"
   },
   "keywords": [
     "cdk",
@@ -153,7 +154,7 @@
     "outdir": "dist",
     "targets": {
       "python": {
-        "distName": "jjrawlins_cdk-git-tagger",
+        "distName": "jjrawlins-cdk-git-tagger",
         "module": "jjrawlins_cdk_git_tagger"
       },
       "go": {
