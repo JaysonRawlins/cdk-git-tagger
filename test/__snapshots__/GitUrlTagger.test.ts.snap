@@ -568,7 +568,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
         "type": "cdk:feature-flag-report",
       },
     },
-    "minimumCliVersion": "2.1029.0",
+    "minimumCliVersion": "2.1029.1",
     "version": "48.0.0",
   },
   "package.json": {
@@ -1223,7 +1223,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
         "type": "cdk:feature-flag-report",
       },
     },
-    "minimumCliVersion": "2.1029.0",
+    "minimumCliVersion": "2.1029.1",
     "version": "48.0.0",
   },
   "package.json": {
@@ -1878,7 +1878,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
         "type": "cdk:feature-flag-report",
       },
     },
-    "minimumCliVersion": "2.1029.0",
+    "minimumCliVersion": "2.1029.1",
     "version": "48.0.0",
   },
   "package.json": {
