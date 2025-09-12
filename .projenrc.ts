@@ -84,14 +84,11 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
   devDeps: [
     `aws-cdk-lib@${cdkVersion}`,
+    `constructs@${constructsVersion}`,
     '@types/fs-extra',
     'aws-cdk',
     'fs-extra',
     'glob',
-  ],
-  peerDeps: [
-    `aws-cdk-lib@^${cdkVersion}`,
-    `constructs@^${constructsVersion}`,
   ],
   eslint: true,
   tsconfig: {
