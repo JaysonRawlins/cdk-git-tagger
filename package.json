@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "constructs": "^10.4.2",
-    "projen": "^0.96.2"
+    "projen": "^0.96.3"
   },
   "resolutions": {
     "brace-expansion": "1.1.12",
