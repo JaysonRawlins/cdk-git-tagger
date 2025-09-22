@@ -34,7 +34,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
         },
       },
     },
-    "version": "36.0.0",
+    "version": "32.0.0",
   },
   "Normalize.template.json": {
     "Parameters": {
@@ -85,7 +85,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
       },
     },
   },
-  "cdk.out": "{"version":"36.0.0"}",
+  "cdk.out": "{"version":"32.0.0"}",
   "manifest.json": {
     "artifacts": {
       "Normalize": {
@@ -143,7 +143,6 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
             "MyTagName": "https://github.com/jjrawlins/cdk-git-tagger",
           },
           "templateFile": "Normalize.template.json",
-          "terminationProtection": false,
           "validateOnSynth": false,
         },
         "type": "aws:cloudformation:stack",
@@ -163,7 +162,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
         "type": "cdk:tree",
       },
     },
-    "version": "36.0.0",
+    "version": "32.0.0",
   },
   "package.json": {
     "name": "test-project",
@@ -177,7 +176,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
             "BootstrapVersion": {
               "constructInfo": {
                 "fqn": "aws-cdk-lib.CfnParameter",
-                "version": "2.150.0",
+                "version": "2.85.0",
               },
               "id": "BootstrapVersion",
               "path": "Normalize/BootstrapVersion",
@@ -185,7 +184,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
             "CheckBootstrapVersion": {
               "constructInfo": {
                 "fqn": "aws-cdk-lib.CfnRule",
-                "version": "2.150.0",
+                "version": "2.85.0",
               },
               "id": "CheckBootstrapVersion",
               "path": "Normalize/CheckBootstrapVersion",
@@ -206,7 +205,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
                   },
                   "constructInfo": {
                     "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
-                    "version": "2.150.0",
+                    "version": "2.85.0",
                   },
                   "id": "Resource",
                   "path": "Normalize/MyTopic/Resource",
@@ -214,7 +213,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
               },
               "constructInfo": {
                 "fqn": "aws-cdk-lib.aws_sns.Topic",
-                "version": "2.150.0",
+                "version": "2.85.0",
               },
               "id": "MyTopic",
               "path": "Normalize/MyTopic",
@@ -222,7 +221,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
           },
           "constructInfo": {
             "fqn": "aws-cdk-lib.Stack",
-            "version": "2.150.0",
+            "version": "2.85.0",
           },
           "id": "Normalize",
           "path": "Normalize",
@@ -238,7 +237,7 @@ exports[`Aspect adds tags as expected normalizes by default 1`] = `
       },
       "constructInfo": {
         "fqn": "aws-cdk-lib.App",
-        "version": "2.150.0",
+        "version": "2.85.0",
       },
       "id": "App",
       "path": "",
@@ -282,7 +281,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
         },
       },
     },
-    "version": "36.0.0",
+    "version": "32.0.0",
   },
   "AspectTestTags.template.json": {
     "Parameters": {
@@ -333,7 +332,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
       },
     },
   },
-  "cdk.out": "{"version":"36.0.0"}",
+  "cdk.out": "{"version":"32.0.0"}",
   "manifest.json": {
     "artifacts": {
       "AspectTestTags": {
@@ -391,7 +390,6 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
             "GitUrl": "https://github.com/jjrawlins/cdk-git-tagger",
           },
           "templateFile": "AspectTestTags.template.json",
-          "terminationProtection": false,
           "validateOnSynth": false,
         },
         "type": "aws:cloudformation:stack",
@@ -411,7 +409,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
         "type": "cdk:tree",
       },
     },
-    "version": "36.0.0",
+    "version": "32.0.0",
   },
   "package.json": {
     "name": "test-project",
@@ -425,7 +423,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
             "BootstrapVersion": {
               "constructInfo": {
                 "fqn": "aws-cdk-lib.CfnParameter",
-                "version": "2.150.0",
+                "version": "2.85.0",
               },
               "id": "BootstrapVersion",
               "path": "AspectTestTags/BootstrapVersion",
@@ -433,7 +431,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
             "CheckBootstrapVersion": {
               "constructInfo": {
                 "fqn": "aws-cdk-lib.CfnRule",
-                "version": "2.150.0",
+                "version": "2.85.0",
               },
               "id": "CheckBootstrapVersion",
               "path": "AspectTestTags/CheckBootstrapVersion",
@@ -454,7 +452,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
                   },
                   "constructInfo": {
                     "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
-                    "version": "2.150.0",
+                    "version": "2.85.0",
                   },
                   "id": "Resource",
                   "path": "AspectTestTags/MyTopic/Resource",
@@ -462,7 +460,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
               },
               "constructInfo": {
                 "fqn": "aws-cdk-lib.aws_sns.Topic",
-                "version": "2.150.0",
+                "version": "2.85.0",
               },
               "id": "MyTopic",
               "path": "AspectTestTags/MyTopic",
@@ -470,7 +468,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
           },
           "constructInfo": {
             "fqn": "aws-cdk-lib.Stack",
-            "version": "2.150.0",
+            "version": "2.85.0",
           },
           "id": "AspectTestTags",
           "path": "AspectTestTags",
@@ -486,7 +484,7 @@ exports[`Aspect adds tags as expected with defaults 1`] = `
       },
       "constructInfo": {
         "fqn": "aws-cdk-lib.App",
-        "version": "2.150.0",
+        "version": "2.85.0",
       },
       "id": "App",
       "path": "",
@@ -530,7 +528,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
         },
       },
     },
-    "version": "36.0.0",
+    "version": "32.0.0",
   },
   "OverrideTagName.template.json": {
     "Parameters": {
@@ -581,7 +579,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
       },
     },
   },
-  "cdk.out": "{"version":"36.0.0"}",
+  "cdk.out": "{"version":"32.0.0"}",
   "manifest.json": {
     "artifacts": {
       "OverrideTagName": {
@@ -639,7 +637,6 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
             "MyTagName": "https://github.com/jjrawlins/cdk-git-tagger",
           },
           "templateFile": "OverrideTagName.template.json",
-          "terminationProtection": false,
           "validateOnSynth": false,
         },
         "type": "aws:cloudformation:stack",
@@ -659,7 +656,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
         "type": "cdk:tree",
       },
     },
-    "version": "36.0.0",
+    "version": "32.0.0",
   },
   "package.json": {
     "name": "test-project",
@@ -673,7 +670,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
             "BootstrapVersion": {
               "constructInfo": {
                 "fqn": "aws-cdk-lib.CfnParameter",
-                "version": "2.150.0",
+                "version": "2.85.0",
               },
               "id": "BootstrapVersion",
               "path": "OverrideTagName/BootstrapVersion",
@@ -681,7 +678,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
             "CheckBootstrapVersion": {
               "constructInfo": {
                 "fqn": "aws-cdk-lib.CfnRule",
-                "version": "2.150.0",
+                "version": "2.85.0",
               },
               "id": "CheckBootstrapVersion",
               "path": "OverrideTagName/CheckBootstrapVersion",
@@ -702,7 +699,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
                   },
                   "constructInfo": {
                     "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
-                    "version": "2.150.0",
+                    "version": "2.85.0",
                   },
                   "id": "Resource",
                   "path": "OverrideTagName/MyTopic/Resource",
@@ -710,7 +707,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
               },
               "constructInfo": {
                 "fqn": "aws-cdk-lib.aws_sns.Topic",
-                "version": "2.150.0",
+                "version": "2.85.0",
               },
               "id": "MyTopic",
               "path": "OverrideTagName/MyTopic",
@@ -718,7 +715,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
           },
           "constructInfo": {
             "fqn": "aws-cdk-lib.Stack",
-            "version": "2.150.0",
+            "version": "2.85.0",
           },
           "id": "OverrideTagName",
           "path": "OverrideTagName",
@@ -734,7 +731,7 @@ exports[`Aspect adds tags as expected with overridden tag name 1`] = `
       },
       "constructInfo": {
         "fqn": "aws-cdk-lib.App",
-        "version": "2.150.0",
+        "version": "2.85.0",
       },
       "id": "App",
       "path": "",
