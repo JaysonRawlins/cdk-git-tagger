@@ -11,7 +11,6 @@ import (
 
 	awscdk     "github.com/aws/aws-cdk-go/awscdk/v2/jsii"
 	constructs "github.com/aws/constructs-go/constructs/v10/jsii"
-	projen     "github.com/projen/projen-go/projen/jsii"
 )
 
 //go:embed jjrawlins-cdk-git-tagger-0.0.28.tgz
@@ -23,7 +22,6 @@ func Initialize() {
 	// Ensure all dependencies are initialized
 	awscdk.Initialize()
 	constructs.Initialize()
-	projen.Initialize()
 
 	// Load this library into the kernel
 	_jsii_.Load("@jjrawlins/cdk-git-tagger", "0.0.28", tarball)
