@@ -44,7 +44,7 @@
     "@types/node": "^20",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
-    "aws-cdk": "2.1029.4",
+    "aws-cdk": "2.1030.0",
     "aws-cdk-lib": "2.85.0",
     "commit-and-tag-version": "^12",
     "eslint": "^9",
@@ -59,7 +59,7 @@
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.115.0",
     "jsii-rosetta": "~5.8.0",
-    "projen": "^0.97.1",
+    "projen": "^0.97.2",
     "ts-jest": "^29.4.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
