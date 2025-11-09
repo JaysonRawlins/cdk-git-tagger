@@ -1,13 +1,14 @@
-import { awscdk, TextFile } from 'projen';
+import { awscdk, DependencyType, TextFile } from 'projen';
 import { GithubCredentials } from 'projen/lib/github';
 import { NpmAccess } from 'projen/lib/javascript';
 
 const cdkCliVersion = '2.1029.2';
 const minNodeVersion = '20.9.0';
 const jsiiVersion = '~5.8.0';
-const cdkVersion = '2.85.0'; // Required
-const projenVersion = '^0.95.4'; // Does not affect consumers of the library
-const minConstructsVersion = '10.0.5'; // Minimum version to support CDK v2
+const cdkVersion = '2.85.0'; // Minimum CDK Version Required
+const minProjenVersion = '0.95.6'; // Does not affect consumers of the library
+const minConstructsVersion = '10.0.5'; // Minimum version to support CDK v2 and does affect consumers of the library
+const devConstructsVersion = '10.0.5'; // Pin for local dev/build to avoid jsii type conflicts
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Jayson Rawlins',
   description: 'CDK Aspect to tag resources with git metadata.  This provides a nice connection between the construct and the git repository.',
@@ -20,8 +21,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'metadata',
   ],
   cdkVersion: cdkVersion,
-  projenVersion: projenVersion,
-  projenDevDependency: false,
+  cdkCliVersion: cdkCliVersion,
+  projenVersion: `^${minProjenVersion}`,
   defaultReleaseBranch: 'main',
   minNodeVersion: minNodeVersion,
   jsiiVersion: jsiiVersion,
@@ -83,18 +84,18 @@ const project = new awscdk.AwsCdkConstructLibrary({
     packageName: 'cdk-git-tagger',
   },
   peerDeps: [
-    'aws-cdk-lib', // recommend using version 189 or greater due to security updates
+    `aws-cdk-lib@>=${cdkVersion} <3.0.0`,
+    `constructs@>=${minConstructsVersion} <11.0.0`,
   ],
   deps: [
-    'constructs',
+
   ],
   devDeps: [
     `aws-cdk@${cdkCliVersion}`,
     `aws-cdk-lib@${cdkVersion}`,
-    `constructs@^${minConstructsVersion}`,
-    'projen',
     '@types/fs-extra',
-    'aws-cdk',
+    '@types/node',
+    '@types/lodash',
     'fs-extra',
     'glob',
   ],
@@ -133,8 +134,10 @@ project.package.addField('resolutions', {
   'brace-expansion': '1.1.12',
   'form-data': '^4.0.4',
   '@eslint/plugin-kit': '^0.3.4',
-  'aws-cdk-lib': '>=2.85.0 <3.0.0',
-  'constructs': '>=10.0.5 <11.0.0',
+  'aws-cdk-lib': `>=${cdkVersion} <3.0.0`,
+  // Pin constructs for local dev/build to a single version to avoid jsii conflicts
+  'constructs': devConstructsVersion,
+  'projen': `>=${minProjenVersion} <1.0.0`,
 });
 
 // Add JSII configuration to handle aws-cdk-lib dependency
@@ -201,6 +204,11 @@ new TextFile(project, '.tool-versions', {
     'yarn 1.22.22',
   ],
 });
+
+
+// Ensure 'constructs' is only a peer dependency (avoid duplicates that cause jsii conflicts)
+project.deps.removeDependency('constructs');
+project.deps.addDependency(`constructs@>=${minConstructsVersion} <11.0.0`, DependencyType.PEER);
 
 // Projen creates this incorrectly
 // Removing to keep linter happy
