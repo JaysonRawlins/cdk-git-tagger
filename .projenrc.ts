@@ -4,11 +4,12 @@ import { NpmAccess } from 'projen/lib/javascript';
 
 const cdkCliVersion = '2.1029.2';
 const minNodeVersion = '20.9.0';
-const jsiiVersion = '~5.8.0';
+const jsiiVersion = '^5.8.0';
 const cdkVersion = '2.85.0'; // Minimum CDK Version Required
-const minProjenVersion = '0.95.6'; // Does not affect consumers of the library
+const minProjenVersion = '0.98.10'; // Does not affect consumers of the library
 const minConstructsVersion = '10.0.5'; // Minimum version to support CDK v2 and does affect consumers of the library
 const devConstructsVersion = '10.0.5'; // Pin for local dev/build to avoid jsii type conflicts
+const awsConfigureCredentialsVersion = 'v5';
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Jayson Rawlins',
   description: 'CDK Aspect to tag resources with git metadata.  This provides a nice connection between the construct and the git repository.',
@@ -30,7 +31,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   workflowBootstrapSteps: [
     {
       name: 'configure aws credentials',
-      uses: 'aws-actions/configure-aws-credentials@v4',
+      uses: `aws-actions/configure-aws-credentials@${awsConfigureCredentialsVersion}`,
       with: {
         'role-to-assume': '${{ secrets.AWS_GITHUB_OIDC_ROLE }}',
         'role-duration-seconds': 900,
@@ -81,7 +82,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   publishToGo: {
     moduleName: 'github.com/JaysonRawlins/cdk-git-tagger',
-    packageName: 'cdk-git-tagger',
+    packageName: 'cdkgittagger',
   },
   peerDeps: [
     `aws-cdk-lib@>=${cdkVersion} <3.0.0`,
