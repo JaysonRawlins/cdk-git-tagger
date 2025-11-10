@@ -1,4 +1,4 @@
-package cdk-git-tagger
+package cdkgittagger
 
 
 type GitUrlTaggerProps struct {

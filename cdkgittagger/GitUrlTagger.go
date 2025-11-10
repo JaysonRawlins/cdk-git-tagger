@@ -1,12 +1,12 @@
-package cdk-git-tagger
+package cdkgittagger
 
 import (
 	_jsii_ "github.com/aws/jsii-runtime-go/runtime"
-	_init_ "github.com/JaysonRawlins/cdk-git-tagger/cdk-git-tagger/jsii"
+	_init_ "github.com/JaysonRawlins/cdk-git-tagger/cdkgittagger/jsii"
 
 	"github.com/aws/aws-cdk-go/awscdk/v2"
 	"github.com/aws/constructs-go/constructs/v10"
-	"github.com/JaysonRawlins/cdk-git-tagger/cdk-git-tagger/internal"
+	"github.com/JaysonRawlins/cdk-git-tagger/cdkgittagger/internal"
 )
 
 type GitUrlTagger interface {
@@ -15,7 +15,7 @@ type GitUrlTagger interface {
 	PutGitUrlInFile(gitUrl *string)
 	RetrieveGitUrl() *string
 	// All aspects can visit an IConstruct.
-	Visit(construct constructs.IConstruct)
+	Visit(node constructs.IConstruct)
 }
 
 // The jsii proxy struct for GitUrlTagger
@@ -87,14 +87,14 @@ func (g *jsiiProxy_GitUrlTagger) RetrieveGitUrl() *string {
 	return returns
 }
 
-func (g *jsiiProxy_GitUrlTagger) Visit(construct constructs.IConstruct) {
-	if err := g.validateVisitParameters(construct); err != nil {
+func (g *jsiiProxy_GitUrlTagger) Visit(node constructs.IConstruct) {
+	if err := g.validateVisitParameters(node); err != nil {
 		panic(err)
 	}
 	_jsii_.InvokeVoid(
 		g,
 		"visit",
-		[]interface{}{construct},
+		[]interface{}{node},
 	)
 }
 

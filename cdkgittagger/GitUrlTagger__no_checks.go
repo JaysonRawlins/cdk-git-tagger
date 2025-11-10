@@ -1,6 +1,6 @@
 //go:build no_runtime_type_checking
 
-package cdk-git-tagger
+package cdkgittagger
 
 // Building without runtime type checking enabled, so all the below just return nil
 
@@ -8,7 +8,7 @@ func (g *jsiiProxy_GitUrlTagger) validatePutGitUrlInFileParameters(gitUrl *strin
 	return nil
 }
 
-func (g *jsiiProxy_GitUrlTagger) validateVisitParameters(construct constructs.IConstruct) error {
+func (g *jsiiProxy_GitUrlTagger) validateVisitParameters(node constructs.IConstruct) error {
 	return nil
 }
 

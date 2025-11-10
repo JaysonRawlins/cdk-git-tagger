@@ -1,6 +1,6 @@
 //go:build !no_runtime_type_checking
 
-package cdk-git-tagger
+package cdkgittagger
 
 import (
 	"fmt"
@@ -18,9 +18,9 @@ func (g *jsiiProxy_GitUrlTagger) validatePutGitUrlInFileParameters(gitUrl *strin
 	return nil
 }
 
-func (g *jsiiProxy_GitUrlTagger) validateVisitParameters(construct constructs.IConstruct) error {
-	if construct == nil {
-		return fmt.Errorf("parameter construct is required, but nil was provided")
+func (g *jsiiProxy_GitUrlTagger) validateVisitParameters(node constructs.IConstruct) error {
+	if node == nil {
+		return fmt.Errorf("parameter node is required, but nil was provided")
 	}
 
 	return nil
