@@ -9,6 +9,7 @@ on:
 permissions:
   issues: write
   security-events: read
+  contents: read
 
 jobs:
   create-issues:
