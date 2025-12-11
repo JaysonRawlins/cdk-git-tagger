@@ -42,6 +42,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
     },
   ],
   npmAccess: NpmAccess.PUBLIC,
+  npmProvenance: true, // Enable npm provenance attestations
+  npmTrustedPublishing: true, // Use OIDC for npm publishing (eliminates NPM_TOKEN secret)
   projenrcTs: true,
   repositoryUrl: 'https://github.com/JaysonRawlins/cdk-git-tagger.git',
   githubOptions: {
@@ -195,6 +197,8 @@ project.github!.tryFindWorkflow('release')!.file!.addOverride('jobs.release.perm
 project.github!.tryFindWorkflow('release')!.file!.addOverride('jobs.release_npm.permissions.id-token', 'write');
 project.github!.tryFindWorkflow('release')!.file!.addOverride('jobs.release_npm.permissions.packages', 'read');
 project.github!.tryFindWorkflow('release')!.file!.addOverride('jobs.release_npm.permissions.contents', 'write');
+// Override node-version to 24 for npm Trusted Publishing (requires npm CLI 11.5.1+)
+project.github!.tryFindWorkflow('release')!.file!.addOverride('jobs.release_npm.steps.0.with.node-version', '24');
 
 project.github!.tryFindWorkflow('release')!.file!.addOverride('jobs.release_pypi.permissions.id-token', 'write');
 project.github!.tryFindWorkflow('release')!.file!.addOverride('jobs.release_pypi.permissions.packages', 'read');
@@ -210,7 +214,7 @@ project.github!.tryFindWorkflow('release')!.file!.addOverride('jobs.release_nuge
 
 // Prevent release workflow from triggering on Go module commits
 project.github!.tryFindWorkflow('release')!.file!.addOverride('on.push.paths-ignore', [
-  'cdk-git-tagger/**',
+  'cdkgittagger/**',
 ]);
 
 new TextFile(project, '.tool-versions', {

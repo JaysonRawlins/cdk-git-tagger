@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - cdk-git-tagger/**
+      - cdkgittagger/**
   workflow_dispatch: {}
 concurrency:
   group: ${{ github.workflow }}
@@ -111,7 +111,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v5
         with:
-          node-version: 20.9.0
+          node-version: "24"
       - name: Download build artifacts
         uses: actions/download-artifact@v5
         with:
@@ -147,7 +147,7 @@ jobs:
           NPM_DIST_TAG: latest
           NPM_REGISTRY: registry.npmjs.org
           NPM_CONFIG_PROVENANCE: "true"
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TRUSTED_PUBLISHER: "true"
         run: npx -p publib@latest publib-npm
   release_pypi:
     name: Publish to PyPI
