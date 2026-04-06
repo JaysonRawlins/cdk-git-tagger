@@ -9,7 +9,7 @@ updates:
     ignore:
       # Intentionally pinned — minimum peer dep versions for consumer compatibility
       - dependency-name: "constructs"
-        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
       - dependency-name: "aws-cdk-lib"
         update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
       # Pinned to match engines.node — prevent accidental use of newer Node APIs
