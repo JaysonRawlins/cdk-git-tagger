@@ -1,0 +1,33 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    groups:
+      jsii:
+        patterns:
+          - "jsii"
+          - "jsii-*"
+      eslint:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@stylistic/*"
+          - "@typescript-eslint/*"
+      testing:
+        patterns:
+          - "jest"
+          - "jest-*"
+          - "ts-jest"
+      types:
+        patterns:
+          - "@types/*"
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
