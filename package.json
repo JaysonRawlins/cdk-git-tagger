@@ -31,7 +31,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^2",
+    "@stylistic/eslint-plugin": "^5",
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.14",
     "@types/lodash": "^4.17.24",
@@ -42,8 +42,8 @@
     "aws-cdk-lib": "2.85.0",
     "commit-and-tag-version": "^12",
     "constructs": "10.0.5",
-    "eslint": "^9",
-    "eslint-import-resolver-typescript": "^3.10.1",
+    "eslint": "^10",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "fs-extra": "^11.3.4",
     "glob": "^11.1.0",
