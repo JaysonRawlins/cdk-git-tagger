@@ -6,6 +6,23 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 10
+    ignore:
+      # Intentionally pinned — minimum peer dep versions for consumer compatibility
+      - dependency-name: "constructs"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "aws-cdk-lib"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      # Pinned to match engines.node — prevent accidental use of newer Node APIs
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      # jsii requires TypeScript 5.x
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      # ts-jest and jest must be upgraded together; jest 30 is not yet compatible
+      - dependency-name: "jest"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "jest-junit"
+        update-types: ["version-update:semver-major"]
     groups:
       jsii:
         patterns:
