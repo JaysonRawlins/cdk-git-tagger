@@ -23,10 +23,10 @@ fi
 
 # Write the resolved version into package.json so commit-and-tag-version
 # knows the correct starting point (package.json is normally reset to 0.0.0)
-node -e "
+LATEST_VERSION="$LATEST_VERSION" node -e "
 const fs = require('fs');
 const p = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-p.version = '${LATEST_VERSION}';
+p.version = process.env.LATEST_VERSION;
 fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n');
 "
 
