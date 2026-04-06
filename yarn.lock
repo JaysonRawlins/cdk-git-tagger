@@ -1535,9 +1535,9 @@ balanced-match@^1.0.0:
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
 baseline-browser-mapping@^2.10.12:
-  version "2.10.14"
-  resolved "https://registry.yarnpkg.com/baseline-browser-mapping/-/baseline-browser-mapping-2.10.14.tgz#d25463733a8f80bb59ab9f797c902dc88832d47c"
-  integrity sha512-fOVLPAsFTsQfuCkvahZkzq6nf8KvGWanlYoTh0SVA0A/PIUxQGU2AOZAoD95n2gFLVDW/jP6sbGLny95nmEuHA==
+  version "2.10.15"
+  resolved "https://registry.yarnpkg.com/baseline-browser-mapping/-/baseline-browser-mapping-2.10.15.tgz#775e7f7237bb1117da66f4388539f57168815104"
+  integrity sha512-1nfKCq9wuAZFTkA2ey/3OXXx7GzFjLdkTiFVNwlJ9WqdI706CZRIhEqjuwanjMIja+84jDLa9rcyZDPDiVkASQ==
 
 brace-expansion@1.1.12, brace-expansion@^1.1.7, brace-expansion@^5.0.5:
   version "1.1.12"
@@ -4114,9 +4114,9 @@ log4js@^6.9.1:
     streamroller "^3.1.5"
 
 lru-cache@^11.0.0:
-  version "11.2.7"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-11.2.7.tgz#9127402617f34cd6767b96daee98c28e74458d35"
-  integrity sha512-aY/R+aEsRelme17KGQa/1ZSIpLpNYYrhcrepKTZgE+W3WM16YMCaPwOHLHsmopZHELU0Ojin1lPVxKR0MihncA==
+  version "11.3.0"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-11.3.0.tgz#c1fb0c77eae4962f326d6118c73471010a6f4f95"
+  integrity sha512-sr8xPKE25m6vJVcrdn6NxtC0fVfuPowbscLypegRgOm0yXSqr5JNHCAY3hnusdJ7HRBW04j6Ip4khvHU778DuQ==
 
 lru-cache@^5.1.1:
   version "5.1.1"
