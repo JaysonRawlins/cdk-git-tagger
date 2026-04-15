@@ -23,7 +23,7 @@ jobs:
       CI: "true"
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Set git identity
@@ -127,7 +127,7 @@ jobs:
           role-skip-session-tagging: true
           role-session-name: GitHubActions
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: .repo
       - name: Install Dependencies
@@ -180,7 +180,7 @@ jobs:
           role-skip-session-tagging: true
           role-session-name: GitHubActions
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: .repo
       - name: Install Dependencies
@@ -230,7 +230,7 @@ jobs:
           role-skip-session-tagging: true
           role-session-name: GitHubActions
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: .repo
       - name: Install Dependencies
@@ -281,7 +281,7 @@ jobs:
           role-skip-session-tagging: true
           role-session-name: GitHubActions
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: .repo
       - name: Install Dependencies
