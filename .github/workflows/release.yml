@@ -39,7 +39,7 @@ jobs:
           role-skip-session-tagging: true
           role-session-name: GitHubActions
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 20.x
       - name: Install dependencies
@@ -82,7 +82,7 @@ jobs:
       contents: write
     if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 20.x
       - name: Download build artifacts
@@ -107,7 +107,7 @@ jobs:
       packages: read
     if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: "24"
       - name: Download build artifacts
@@ -157,7 +157,7 @@ jobs:
       packages: read
     if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 20.x
       - uses: actions/setup-python@v6
@@ -207,7 +207,7 @@ jobs:
       packages: read
     if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 20.x
       - uses: actions/setup-dotnet@v5
@@ -258,7 +258,7 @@ jobs:
       packages: read
     if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 20.x
       - uses: actions/setup-go@v6
