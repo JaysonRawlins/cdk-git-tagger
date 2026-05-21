@@ -103,9 +103,26 @@ project.package.addField('resolutions', {
   '@eslint/plugin-kit': '^0.3.4',
   'aws-cdk-lib': `>=${cdkVersion} <3.0.0`,
   'constructs': devConstructsVersion,
-  // Exact-pin projen so transitive resolution can't pick a newer version
-  // that Aikido Safe-Chain would block as < 7 days old.
+  // Exact-pin packages whose latest versions are inside Aikido Safe-Chain's
+  // 7-day cooldown window. Each pinned version was the latest stable as of
+  // 2026-05-14 (today minus 7 days). Bump as the cooldown clears upstream.
+  // Yarn 1 resolutions need the **/ glob to override transitive ranges, not
+  // just direct requests.
   'projen': minProjenVersion,
+  'jsii': '5.9.40',
+  'jsii-rosetta': '5.9.45',
+  '@jsii/check-node': '1.129.0',
+  '@jsii/spec': '1.129.0',
+  '@typescript-eslint/eslint-plugin': '8.59.3',
+  '@typescript-eslint/parser': '8.59.3',
+  '@typescript-eslint/utils': '8.59.3',
+  '@typescript-eslint/scope-manager': '8.59.3',
+  '@typescript-eslint/types': '8.59.3',
+  '@typescript-eslint/typescript-estree': '8.59.3',
+  '@typescript-eslint/visitor-keys': '8.59.3',
+  '@typescript-eslint/project-service': '8.59.3',
+  '@typescript-eslint/tsconfig-utils': '8.59.3',
+  'semver': '7.8.0',
 });
 
 project.package.addField('engines', {
