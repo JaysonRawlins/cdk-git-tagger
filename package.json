@@ -6,24 +6,30 @@
     "url": "https://github.com/JaysonRawlins/cdk-git-tagger.git"
   },
   "scripts": {
-    "build": "yarn compile && yarn docgen && yarn test && yarn package",
-    "bump": "bash scripts/bump.sh",
-    "compile": "jsii --silence-warnings=reserved-word && rm -rf tsconfig.json",
-    "docgen": "jsii-docgen -o API.md",
-    "eslint": "NODE_NO_WARNINGS=1 eslint --fix --no-error-on-unmatched-pattern src test build-tools",
-    "lint": "yarn eslint",
-    "package": "node -e \"if (!process.env.CI) process.exit(1)\" && yarn package:js || yarn package-all",
-    "package-all": "yarn package:js && yarn package:python && yarn package:dotnet && yarn package:go",
-    "package:dotnet": "jsii-pacmak -v --target dotnet",
-    "package:go": "jsii-pacmak -v --target go",
-    "package:js": "jsii-pacmak -v --target js",
-    "package:python": "jsii-pacmak -v --target python",
-    "release": "rm -rf dist && yarn bump && yarn build && yarn unbump && git diff --ignore-space-at-eol --exit-code",
-    "test": "jest --passWithNoTests --updateSnapshot && yarn eslint",
-    "test:watch": "jest --watch",
-    "unbump": "node -e \"const fs=require('fs');const p=JSON.parse(fs.readFileSync('package.json','utf8'));p.version='0.0.0';fs.writeFileSync('package.json',JSON.stringify(p,null,2)+'\\n')\"",
-    "watch": "jsii -w --silence-warnings=reserved-word",
-    "compat": "jsii-diff npm:$(node -p \"require('./package.json').name\") -k --ignore-file .compatignore || (echo \"\nUNEXPECTED BREAKING CHANGES: add keys such as 'removed:constructs.Node.of' to .compatignore to skip.\n\" && exit 1)"
+    "audit:lockfile-age": "projen audit:lockfile-age",
+    "build": "projen build",
+    "bump": "projen bump",
+    "clobber": "projen clobber",
+    "compat": "projen compat",
+    "compile": "projen compile",
+    "default": "projen default",
+    "docgen": "projen docgen",
+    "eject": "projen eject",
+    "eslint": "projen eslint",
+    "package": "projen package",
+    "package-all": "projen package-all",
+    "package:dotnet": "projen package:dotnet",
+    "package:go": "projen package:go",
+    "package:js": "projen package:js",
+    "package:python": "projen package:python",
+    "post-compile": "projen post-compile",
+    "pre-compile": "projen pre-compile",
+    "release": "projen release",
+    "test": "projen test",
+    "test:watch": "projen test:watch",
+    "unbump": "projen unbump",
+    "watch": "projen watch",
+    "projen": "projen"
   },
   "author": {
     "name": "Jayson Rawlins",
@@ -31,7 +37,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^5",
+    "@stylistic/eslint-plugin": "^2",
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.14",
     "@types/lodash": "^4.17.24",
@@ -42,34 +48,28 @@
     "aws-cdk-lib": "2.85.0",
     "commit-and-tag-version": "^12",
     "constructs": "10.0.5",
-    "eslint": "^10",
+    "eslint": "^9",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "fs-extra": "^11.3.4",
     "glob": "^13.0.6",
-    "globals": "^17.5.0",
     "jest": "^29.7.0",
     "jest-junit": "^16",
-    "jsii": "^5.8.0",
+    "jsii": "~5.9.0",
     "jsii-diff": "^1.127.0",
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.127.0",
-    "jsii-rosetta": "^5.8.0",
+    "jsii-rosetta": "~5.9.0",
+    "projen": "0.99.52",
     "ts-jest": "^29.4.9",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "ts-node": "10.9.2",
+    "typescript": "5.9.3"
   },
   "peerDependencies": {
     "aws-cdk-lib": "^2.85.0",
     "constructs": ">=10.0.5 <11.0.0"
   },
-  "resolutions": {
-    "brace-expansion": "1.1.12",
-    "form-data": "^4.0.4",
-    "@eslint/plugin-kit": "^0.3.4",
-    "aws-cdk-lib": ">=2.85.0 <3.0.0",
-    "constructs": "10.0.5"
-  },
+  "pnpm": {},
   "keywords": [
     "cdk",
     "git",
@@ -80,27 +80,27 @@
   "engines": {
     "node": ">=20.0.0"
   },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.13.0",
+      "onFail": "ignore"
+    }
+  },
   "main": "lib/index.js",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   },
   "version": "0.0.0",
+  "packageManager": "pnpm@11.13.0",
   "jest": {
     "coverageProvider": "v8",
-    "moduleNameMapper": {
-      "^aws-cdk-lib/(.*)$": "<rootDir>/node_modules/aws-cdk-lib/$1"
-    },
-    "moduleDirectories": [
-      "node_modules"
-    ],
-    "testEnvironment": "node",
-    "transformIgnorePatterns": [
-      "node_modules/(?!(aws-cdk-lib)/)"
-    ],
     "testMatch": [
       "<rootDir>/@(src|test)/**/*(*.)@(spec|test).ts?(x)",
-      "<rootDir>/@(src|test)/**/__tests__/**/*.ts?(x)"
+      "<rootDir>/@(src|test)/**/__tests__/**/*.ts?(x)",
+      "<rootDir>/@(projenrc)/**/*(*.)@(spec|test).ts?(x)",
+      "<rootDir>/@(projenrc)/**/__tests__/**/*.ts?(x)"
     ],
     "clearMocks": true,
     "collectCoverage": true,
@@ -161,5 +161,11 @@
       "outDir": "lib",
       "rootDir": "src"
     }
-  }
+  },
+  "resolutions": {
+    "form-data": "^4.0.4",
+    "aws-cdk-lib": ">=2.85.0 <3.0.0",
+    "constructs": "10.0.5"
+  },
+  "//": "~~ Generated by projen. To modify, edit .projenrc.ts and run \"pnpm exec projen\"."
 }
